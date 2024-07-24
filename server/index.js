@@ -1,5 +1,7 @@
 const express = require('express')
 const router = require('./router/index.js')
+require('dotenv')
+const connectDB = require('./config/connectDB.js')
 
 const app = express()
 
@@ -9,6 +11,9 @@ app.get("/", (req,res)=>{
 app.use('/api',router)
 app.set("view engine", "ejs") //화면 엔진을 ejs로 설정한다. (기본폴더는 /views이다)
 
+connectDB().then(()=>{
+    console.log(`와우 제작한 MongoDB와 연결 성공!`)
+})
 app.listen(8080, ()=> {
     console.log(`웹서버가 실행되었습니다.`)
 })
