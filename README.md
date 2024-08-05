@@ -82,15 +82,25 @@
 2. async / await 약간의 실습(20분정도)
 
 # 8월 5일(월) 과제
+0. github codespace에서 postman 실행할 때
+  - Header에  X-Github-Token 값을 전달해야함
+  - echo $GITHUB-TOKEN값을 전달해야함 (echo $GITHUB_TOKEN 으로 알아냄)
 1. 카카오클라이언트 완성
   - 회원가입 서버 api 호출
+  - 추가설치
+    - npm install axios : promise기반 http 클라이언트 라이브러리
+    - npm install react-host-toast : 토스트메시지
+    - npm install react-icons : 리렉트 기본제공 아이콘
   - 아이디(계정) 로그인 -> 비밀번호 로그인
   - 개인사진 프로필 등록
   - 기본적 Chat (대화기능)
+2. 채팅화면 하드코딩으로 그리기
+  - Sidebar.js, MessagePage.js
 
 # 8월 6일(화) 과제
-1. 카카오클라이언트 완성
-  - 기본적 대화기능 완성
+1. 카카오클라이언트 프로그램 제작
+  - Chat sample 가볍게 예제 만들기
+  - Chat 대화기능
 
 # 2막 수업
 # 8월 7일(수) 과제
