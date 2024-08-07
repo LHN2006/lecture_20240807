@@ -1,12 +1,17 @@
 import React from "react";
+import {useLocation, useNavigate} from 'react-router-dom'
 
 const CheckPasswordPage = () => {
+    {/* 비밀번호 체크 로직 생성 */}
+    const navigate = useNavigate()
+    const location = useLocation()
+
     return(
         <div className='mt-5'>
             <div className='bg-white w-full max-w-md rounded overflow-hidden p-4 mx-auto'>
                 <div className='w-fit mx-auto mb-2 flex justify-center items-center flex-col'>
                     로그인한 내 아바타표시
-                    <h2 className='font-semibold text-lg mt-1'>이혜인</h2>
+                    <h2 className='font-semibold text-lg mt-1'>{location?.state?.name}</h2>
                 </div>
                 <form className='grid gap-4 mt-3'>
                     <div>
