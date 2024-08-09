@@ -3,6 +3,7 @@ const cors = require('cors')
 const router = require('./router/index.js')
 require('dotenv').config({ path: '.env' })
 const connectDB = require('./config/connectDB.js')
+const cookiesParser = require('cookie-parser')
 
 const app = express()
 
@@ -13,6 +14,7 @@ app.use(cors({  //cors설정은 맨위에 존재해야 함.
     credentials : true
 }))
 app.use(express.json())
+app.use(cookiesParser())    //쿠키를 읽을 수 있게 제작
 app.use('/api',router)
 app.set("view engine", "ejs") //화면 엔진을 ejs로 설정한다. (기본폴더는 /views이다)
 
