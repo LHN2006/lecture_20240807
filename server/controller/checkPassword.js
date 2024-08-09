@@ -1,23 +1,35 @@
 const UserModel = require('../models/UserModel')
 const bcryptjs = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const checkPassword = async (req,res) => {
     try {
         const {password, userId} = req.body
         const user = await UserModel.findById(userId)
-        const verifypassword = await bcryptjs.compare(password, user.password)
-        if(!verifypassword){    //비번이 아닌 경우
+        const verifyPassword = await bcryptjs.compare(password, user.password)
+        if(!verifyPassword){ //비번이 틀리면
             return res.status(400).json({
-                message: '비밀번호가 일치하지 않습니다.',
+                message: '비밀번호가 틀립니다.',
                 error: true
             })
         }
-        return res.status(200).json({
+
+        // 웹브라우저에 토큰을 쿠키로 굽기
+        const tokenData = {
+            id: user._id,
+            email: user.email
+        }
+        const token = await jwt.sign(tokenData, process.env.JWT_SECREAT_KEY, {expiresIn:'1d'})
+        const cookieOptions = {
+            http: true,
+            secure: true
+        }
+        return res.cookie('token',token,cookieOptions).status(200).json({
             message: '로그인 성공!',
+            token: token,
             success: true
         })
-
-    } catch (error) {
+    }catch(error){
         return res.status(500).json({
             message: error.message || error,
             error: true
