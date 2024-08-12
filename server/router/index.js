@@ -5,6 +5,7 @@ const checkPassword = require('../controller/checkPassword.js')
 const userDetails = require('../controller/userDetails.js')
 const logout = require('../controller/logout.js')
 const updateUserDetails = require('../controller/updateUserDetails.js')
+const searchUser = require('../controller/searchUser.js')
 
 const router = express()
 
@@ -20,5 +21,6 @@ router.get("/user-details",userDetails) //토큰을 이용하여 사용자 정�
 router.get("/logout",logout)    //로그아웃
 
 router.post("/update-user", updateUserDetails)  //사용자 이름+사진 변경
+router.post("/search-user", searchUser)  //사용자 검색
 
 module.exports = router
