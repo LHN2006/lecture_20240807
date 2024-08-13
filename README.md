@@ -124,9 +124,15 @@
 
 # 8월 13일(화) 수업내용
 1. 소캣통신 시작(환경구성)
-2. /server
+2. /server  (소켓서버 제작)
     npm install socket.io
     /socket/index.js
-3. /client
+3. /client  (소켓클라이언트 제작)
     npm install socket.io-client
     /src/pages/Home.js
+4. 코드에 영향주기
+  - Avata에 접속여부 표시
+  - 대화방 상단에 상대방 노출
+
+# 8월 20일(화)
+1. 말걸기....

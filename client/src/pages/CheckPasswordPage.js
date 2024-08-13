@@ -3,6 +3,8 @@ import {useLocation, useNavigate} from 'react-router-dom'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import Avatar from "../components/Avatar";
+import { useDispatch } from "react-redux";
+import { setToken, setUser } from "../redux/userSlice";
 
 const CheckPasswordPage = () => {
     {/* 비밀번호를 체크하는 로직 제작 */}
@@ -12,6 +14,7 @@ const CheckPasswordPage = () => {
     })
     const navigate = useNavigate()
     const location = useLocation()
+    const dispatch = useDispatch()
 
     const handleOnChange = (e) => {
         const { name, value } = e.target
@@ -37,6 +40,14 @@ const CheckPasswordPage = () => {
                 withCredentials: true
             })
             toast.success(response.data.message)
+            //1. 로그인 성공 후, 리덕스에 쓰고
+            dispatch(setToken(response?.data?.token))
+            //2. 로컬스토리지에 사용
+            localStorage.setItem('token',response?.data?.token)
+            setData({
+                password:""
+            })
+
             navigate('/') // 채팅창 이동
         }catch(error){
             toast.error(error?.response?.data?.message)
